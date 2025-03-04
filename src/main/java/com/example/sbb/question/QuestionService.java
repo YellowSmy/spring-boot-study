@@ -1,6 +1,7 @@
 package com.example.sbb.question;
 import com.example.sbb.DataNotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,14 @@ public class QuestionService {
 		else {
 			throw new DataNotFoundException("data not found");
 		}
+	}
+	
+	public void create(String subject, String content) {
+		Question q = new Question();
+		q.setSubject(subject);
+		q.setContent(content);
+		q.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q);
 	}
 	
 }

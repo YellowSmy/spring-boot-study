@@ -1,5 +1,6 @@
 <html layout:decorate="~{layout}">
 	<div layout:fragment="content" class="container my-3">
+		<!-- question list -->
 		<table class="table">
 		    <thead class="table-dark">
 		        <tr>
@@ -17,5 +18,8 @@
 		        </tr>
 		    </tbody>
 		</table>
+		
+		<!-- question register link -->
+		<a th:href="@{/question/create}" class="btn btn-primary">질문 등록</a>
 	</div>
 </html>
