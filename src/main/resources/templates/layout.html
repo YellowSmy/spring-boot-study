@@ -4,13 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!--bootstrap-->
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<script th:src="@{/bootstrap.min.js}"></script>
 	
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <title>SBB</title>
 </head>
 
 <body>
+	<!--navbar-->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	<!--Main content-->
 	<th:block layout:fragment="content"></th:block>
 </body>
 </html>
