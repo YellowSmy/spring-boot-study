@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
-@RequestMapping("/question")
+@RequestMapping("/")
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
@@ -27,8 +27,8 @@ public class QuestionController {
 	private final QuestionService questionService;
 	
 	//Show All Question page
-	@GetMapping("/list")
-	public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+	@GetMapping("/")
+	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
 		Page<Question> paging = this.questionService.getList(page);
 		model.addAttribute("paging", paging);
 		return "question_list";
