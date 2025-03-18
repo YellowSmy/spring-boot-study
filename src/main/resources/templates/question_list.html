@@ -3,21 +3,25 @@
 		<!-- question list -->
 		<table class="table">
 		    <thead class="table-dark">
-		        <tr>
+		        <tr class="text-center">
 					<th>번호</th>
-		            <th>제목</th>
+					<th style="width: 50%;">제목</th>
+		            <th>글쓴이</th>
 		            <th>작성일시</th>
 		        </tr>
 		    </thead>
 		    <tbody>
-		        <tr th:each="question, loop: ${paging}">
+		        <tr class="text-center" th:each="question, loop: ${paging}">
 					<td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-		            <td>
+		            <td class="text-start">
 		                <a th:href="@{|/detail/${question.id}|}" th:text="${question.subject}"></a>
 						<span class="text-danger small ms-2"
 						      th:if="${#lists.size(question.answerList) > 0}" 
 						      th:text="${#lists.size(question.answerList)}">
 						</span>
+					</td>
+					<td>
+						<span th:if="${question.author != null}" th:text="${question.author.username}"></span>
 					</td>
 		            <td th:text="${#temporals.format(question.createDate, 'yy-MM-dd HH:mm')}"></td>
 		        </tr>
@@ -48,6 +52,6 @@
 		    </div>
 		
 		<!-- question register link -->
-		<a th:href="@{/question/create}" class="btn btn-primary">질문 등록</a>
+		<a th:href="@{/create}" class="btn btn-primary">질문 등록</a>
 	</div>
 </html>

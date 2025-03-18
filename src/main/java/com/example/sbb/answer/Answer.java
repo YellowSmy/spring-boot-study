@@ -3,6 +3,7 @@ package com.example.sbb.answer;
 import java.time.LocalDateTime;
 
 import com.example.sbb.question.Question;
+import com.example.sbb.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,4 +30,11 @@ public class Answer {
 	
 	@ManyToOne
 	private Question question;	
+	
+	//Creator
+	@ManyToOne
+	private SiteUser author;
+	
+	//modify
+	private LocalDateTime modifyDate;
 }
