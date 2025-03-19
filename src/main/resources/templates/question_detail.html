@@ -3,9 +3,18 @@
 	<script layout:fragment="script" type='text/javascript'>
 		const delete_elements = document.getElementsByClassName("delete");
 		Array.from(delete_elements).forEach((element) => {
-			element.addEventListener('click', () => {
+			element.addEventListener('click', function () {
 				if(confirm("정말로 삭제하시겠습니까?")) { location.href = this.dataset.uri; };
 			});
+		});
+		
+		const recommend_elements = document.getElementsByClassName("recommend");
+		Array.from(recommend_elements).forEach((element) => {
+		    element.addEventListener('click', function() {
+		        if(confirm("정말로 추천하시겠습니까?")) {
+		            location.href = this.dataset.uri;
+		        };
+		    });
 		});
 	</script>  
 	
@@ -30,15 +39,20 @@
 	            </div>
 		
 				<div class="my-3">
+					<!--recommend-->
+					<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+					   th:data-uri="@{|/vote/${question.id}|}"> 추천
+					   <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+					</a>
 					<!--Update-->
 					<a th:href="@{|/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
 					   sec:authorize="isAuthenticated()" th:text="수정" 
 					   th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"></a>
-					   <!--Delete-->
+					<!--Delete-->
 					<a href="javascript:void(0);" th:data-uri="@{|/delete/${question.id}|}"
 					   	  class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
 					      th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
-					      th:text="삭제"></a>
+					      th:text="삭제"></a>	
 				</div>
 	        </div>
 	    </div>
@@ -67,6 +81,11 @@
 	            </div>
 				
 				<div class="my-3">
+					<!--recommend-->
+					<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+					   th:data-uri="@{|/answer/vote/${answer.id}|}"> 추천
+					   <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
+					</a>
 					<!--Update-->
 					<a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
 				       sec:authorize="isAuthenticated()"

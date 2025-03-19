@@ -22,6 +22,7 @@ class SpringBootStudyApplicationTests {
 	@Autowired
 	private QuestionService questionService;
 	
+	/*
 	@Test
 	void testJpa() {
 		for(int i=1; i<=300; i++) {
@@ -30,4 +31,5 @@ class SpringBootStudyApplicationTests {
 			this.questionService.create(subject, content);
 		}
 	}
+	*/
 }
